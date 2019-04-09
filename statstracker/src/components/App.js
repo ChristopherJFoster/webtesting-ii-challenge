@@ -1,9 +1,11 @@
 import React from 'react';
 
+import Display from './Display';
+
 const App = () => {
   return (
     <div className='App'>
-      <p>Placeholder...</p>
+      <Display />
     </div>
   );
 };
