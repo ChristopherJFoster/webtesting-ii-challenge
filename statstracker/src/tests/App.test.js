@@ -57,3 +57,21 @@ describe('Ball Button', () => {
     getByText(/strikes: 0/i);
   });
 });
+
+describe('Foul Button', () => {
+  it('adds a strike from 0 to 1', () => {
+    const { getByText } = render(packagedApp);
+    const button = getByText(/foul$/i);
+    fireEvent.click(button);
+    getByText(/strikes: 1/i);
+  });
+
+  it('does not add a strike if strikes already at 2', () => {
+    const { getByText } = render(packagedApp);
+    const button = getByText(/foul$/i);
+    fireEvent.click(button);
+    fireEvent.click(button);
+    fireEvent.click(button);
+    getByText(/strikes: 2/i);
+  });
+});
