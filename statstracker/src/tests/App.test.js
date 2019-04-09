@@ -75,3 +75,27 @@ describe('Foul Button', () => {
     getByText(/strikes: 2/i);
   });
 });
+
+describe('Hit Button', () => {
+  it('resets count', () => {
+    const { getByText } = render(packagedApp);
+    const strikeButton = getByText(/strike$/i);
+    const ballButton = getByText(/ball$/i);
+    const foulButton = getByText(/foul$/i);
+    const hitButton = getByText(/hit$/i);
+    fireEvent.click(strikeButton);
+    fireEvent.click(ballButton);
+    fireEvent.click(foulButton);
+    fireEvent.click(hitButton);
+    getByText(/balls: 0/i);
+    getByText(/strikes: 0/i);
+  });
+
+  it('resets count even if count is empty', () => {
+    const { getByText } = render(packagedApp);
+    const button = getByText(/hit$/i);
+    fireEvent.click(button);
+    getByText(/balls: 0/i);
+    getByText(/strikes: 0/i);
+  });
+});
